@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Entradas
+{% endblock %}
+
+{% block content %}
+    <link href="{% static 'css/Entradas.css' %}" rel="stylesheet">
+    <header class="telaentradas">
+        <form action="" method="POST" autocomplete="off">
+            {% csrf_token %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <label>Registro de Entradas no Estoque</label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="lin1">
+                        <td>
+                            <label class="entry" for="entradaCod">Cód Item:</label>
+                            <br>
+                            <input class="input w-30" name="entradaCod" id="entradaCod" type="text" autofocus onkeyup="pesquisa('entrada')" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr class="lin2">
+                        <td>
+                            <label class="entry" for="entradaNome">Nome:</label>
+                            <br>
+                            <input class="input NomeCod" name="entradaNome" id="entradaNome" type="text" required readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr class="lin3">
+                        <td>
+                            <label class="entry" for="entradaQuantidade">Quantidade:</label>
+                            <br>
+                            <input class="input w-12" name="entradaQuantidade" id="entradaQuantidade" type="text" onkeyup="valorTotal('entrada')" maxlength="5" required>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr class="lin4">
+                        <td>
+                            <label class="entry" for="entradaValidade">Validade:</label>
+                            <br>
+                            <input class="input" name="entradaValidade" id="entradaValidade" type="date">
+                        </td>
+                    </tr>
+                    <tr class="lin4">
+                        <td>
+                            <label class="entry" for="entradaValorUnitario">Valor Unitário:</label>
+                            <br>
+                            <input class="input w-20" name="entradaValorUnitario" id="entradaValorUnitario" type="text" required readonly>
+                        </td>
+                    </tr>
+                    <tr class="lin4">
+                        <td>
+                            <label class="entry" for="entradaValorTotal">Valor Total:</label>
+                            <br>
+                            <input class="input w-20" name="entradaValorTotal" id="entradaValorTotal" type="text" required readonly>
+                        </td>
+                    </tr>
+                    <tr class="entradaFoto">
+                        <td>
+                            <img id="entradaimg" src="{% static 'image/padrao.png' %}">
+                            <label id="entradalabelpreco" class="labelpreco"><span></span>R$ 0,00</label>
+                        </td>
+                    </tr>
+                    <tr class="lin5">
+                        <td>
+                            <input name="entradaCategoria" id="entradaCategoria" hidden="hidden">
+                            <button class="btn btn-outline-primary salvar" type="submit">Cadastrar</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <script>
+                    const items = [
+                        {% for item in Itens %}
+                            {
+                                cod: {{item.sku}},
+                                nome: '{{item.nome}}',
+                                categoria: '{{item.categoria}}',
+                                valor_unitario: '{{item.valor_unitario}}',
+                                imagem: '{{item.imagem}}',
+                            },
+                        {% endfor %}
+                    ];
+                </script>
+            </table>
+        </form>
+    </header>
+{% endblock %}

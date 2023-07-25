@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Novo Item
+{% endblock %}
+
+{% block content %}
+    <link href="{% static 'css/NovoItem.css' %}" rel="stylesheet">
+    <header class="novoitem">
+        <div>
+            <form  action="" method="POST" autocomplete="off">
+                {% csrf_token %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <h1 class="ml-6">Cadastrar Novo Item no Banco de Dados:</h1>
+                                <br><br>
+                            </th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label class="entry" for="novoItemCod">Cód Item:</label>
+                                <br>
+                                <input class="input w-20" name="novoItemCod" id="novoItemCod" type="number" autofocus required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="entry" for="novoItemNome">Nome Item:</label>
+                                <br>
+                                <input class="input" name="novoItemNome" id="novoItemNome" type="text" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="entry" for="novoItemCategoria">Categoria:</label>
+                                <br>
+                                <select class="select ml-6" name="novoItemCategoria" id="novoItemCategoria" required>
+                                    <option selected value=""></option>
+                                    <option value="ALIMENTOS">ALIMENTOS</option>
+                                    <option value="BEBIDAS">BEBIDAS</option>
+                                    <option value="CONSUMIVEIS">CONSUMIVEIS</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="entry" for="novoItemValor">Valor Unitário:</label>
+                                <br>
+                                <input class="input w-20" name="novoItemValor" id="novoItemValor" type="text" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="{% static 'image/Narguile1.png' %}" alt="Narguilé"  class="novoItemInteracao">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button class="btn btn-outline-primary salvar" type="submit">Salvar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </header>
+{% endblock %}

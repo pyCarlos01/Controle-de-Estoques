@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Status Estoque
+{% endblock %}
+
+{% block content %}
+    <link href="{% static 'css/Status.css' %}" rel="stylesheet">
+    <header class="status">
+        <table class="table">
+            <thead class="table-dark">
+             <tr>
+                 <th>
+                    Status Estoque
+                 </th>
+             </tr>
+            </thead>
+        </table>
+        <table class="table" id="tbestoque">
+            <tbody class="table-dark">
+                <tr>
+                    <td scope="col">
+                        SKU
+                    </td>
+                    <td scope="col">
+                        Item
+                    </td>
+                     <td scope="col">
+                        Quantidade
+                    </td>
+                    <td scope="col">
+                        Categoria
+                    </td>
+                    <td scope="col">
+                        Valor Unitário
+                    </td>
+                    <td scope="col">
+                        Situação
+                    </td>
+                </tr>
+            </tbody>
+            <tbody id="tbodyest">
+                {% for item in estoque %}
+                    <tr>
+                        <td scope="row">
+                            {{item.sku}}
+                        </td>
+                        <td>
+                            {{item.nome_item}}
+                        </td>
+                         <td>
+                            {{item.quantidade}}
+                        </td>
+                        <td>
+                            {{item.categoria}}
+                        </td>
+                        <td>
+                            R$ {{item.valor_vendido}}
+                        </td>
+                        <td id="situacaoItem">
+                            {{item.situacao}}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </header>
+{% endblock %}

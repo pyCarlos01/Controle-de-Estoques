@@ -1,0 +1,88 @@
+input{
+    background-color: white;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0.375rem;
+    display: inline;
+    font-size: 17px;
+    text-indent: 3px;
+    margin-left: 1.5rem;
+    padding: 0.1px;
+}
+
+.NomeCod{
+    width: 400px;
+    background: white;
+}
+
+label{
+    display: inline-block;
+    margin-left: 1.5rem;
+    margin-bottom: 10px;
+}
+
+img{
+    width: 500px;
+    height: 500px;
+}
+
+.lin2{
+    display: inline;
+}
+
+.lin4{
+    display: inline;
+}
+
+.salvar{
+    display: inline;
+    width: 400px;
+    margin-top: 440px;
+    margin-left: 1.5rem;
+}
+
+.entradaFoto{
+    display: inline;
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    margin-top: -120px;
+    margin-left: 200px;
+    box-sizing: border-box;
+    border-color: white;
+    animation: lados 2s infinite alternate;
+    }
+
+@keyframes lados{
+    from{
+        transform: translateX(0px);
+    }
+    to{
+        transform: translateX(150px);
+    }
+}
+
+.labelpreco{
+    margin-left: 200px;
+    font-size: 30px;
+    box-sizing: border-box;
+    color: #ff0000;
+    position: relative;
+    overflow: hidden;
+    animation: animar1 3s infinite alternate;
+}
+
+@keyframes animar1{
+    0%{
+        font-size: 15px;
+        color: black;
+        transform: translateX(0px);
+    }
+    }
+    100%{
+        font-size: 30px;
+        transform: translateX(100px);
+    }
+}
+

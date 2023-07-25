@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Saídas
+{% endblock %}
+
+{% block content %}
+    <link href="{% static 'css/Saidas.css' %}" rel="stylesheet">
+    <header class="telasaidas">
+        <form action="" method="POST" autocomplete="off">
+            {% csrf_token %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <label>Registro de Saídas do Estoque</label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="lin1">
+                        <td>
+                            <label class="entry" for="saidaCod">Cód Item:</label>
+                            <br>
+                            <input class="input w-30" name="saidaCod" id="saidaCod" type="text" autofocus onkeyup="pesquisaSaida('saida')" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr class="lin2">
+                        <td>
+                            <label class="entry" for="saidaNome">Nome:</label>
+                            <br>
+                            <input class="input NomeCod" name="saidaNome" id="saidaNome" type="text" required readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr class="lin3">
+                        <td>
+                            <label class="entry" for="saidaQuantidade">Quantidade:</label>
+                            <br>
+                            <input class="input w-12" name="saidaQuantidade" id="saidaQuantidade" type="text" maxlength="5" onkeyup="valorTotal('saida')" required>
+                        </td>
+                    </tr>
+                    <tr class="lin3">
+                        <td>
+                            <label class="entry" for="saidaQuantidadeMaxima">Em Estoque:</label>
+                            <br>
+                            <input class="input w-12" name="saidaQuantidadeMaxima" id="saidaQuantidadeMaxima" type="text" maxlength="5" onkeyup="valorTotal('saida')" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr class="lin4">
+                        <td>
+                            <label class="entry" for="saidaValorUnitario">Valor Unitário:</label>
+                            <br>
+                            <input class="input w-20" name="saidaValorUnitario" id="saidaValorUnitario" type="text" required readonly>
+                        </td>
+                    </tr>
+                    <tr class="lin4">
+                        <td>
+                            <label class="entry" for="saidaValorTotal">Valor Total:</label>
+                            <br>
+                            <input class="input w-20" name="saidaValorTotal" id="saidaValorTotal" type="text"required readonly>
+                        </td>
+                    </tr>
+                    <tr class="saidaFoto">
+                        <td>
+                            <img id="saidaimg" src="{% static 'image/padrao.png' %}">
+                            <label id="saidalabelpreco" class="labelpreco"><span></span>R$ 0,00</label>
+                            <div id="mensagemErro"></div>
+                        </td>
+                    </tr>
+                    <tr class="lin5">
+                        <td>
+                            <button id="addcarrinho" class="btn btn-outline-primary salvar" type="submit">Adicionar ao Carrinho</button>
+                            <button type="button" class="btn btn-outline-primary salvar position-relative" id="carrinho1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" onclick="carrinho()">
+                                Carrinho
+                                <span id="pends" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{Pendencias}}
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <script>
+                    const items = [
+                        {% for item in Itens %}
+                            {
+                                cod: {{item.sku}},
+                                imagem: '{{item.imagem}}',
+                            },
+                        {% endfor %}
+                    ]
+                    const estoque = [
+                        {% for item in Estoque %}
+                            {
+                                sku: {{item.sku}},
+                                nome: '{{item.nome_item}}',
+                                quantidade: {{item.quantidade}},
+                                valor_vendido: {{item.valor_vendido}},
+                            },
+                        {% endfor %}
+                    ]
+                    const carrin = [
+                        {% for item in Carrinho %}
+                            {
+                                id: {{item.id}},
+                                sku: {{item.sku}},
+                                nome: '{{item.nome_item}}',
+                                quantidade: {{item.quantidade}},
+                                valor_vendido: {{item.preco_venda}},
+                                valor_total: {{item.valor_venda}},
+                                situacao: '{{item.situacao}}',
+                            },
+                        {% endfor %}
+                    ]
+
+                </script>
+            </table>
+        </form>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Compras</h1>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="POST" autocomplete="off">
+                            {% csrf_token %}
+                            <ul name="confirmarCompras" id="confirmarCompras">
+                                <li></li>
+                            </ul>
+                            <br>
+                            <span>
+                                <label>Valor a ser pago R$:</label>
+                                <label class="total" id="compra_total"></label>
+                            </span>
+                            <div class="modal-footer">
+                                <input name="ids" id="ids" hidden="hidden">
+                                <input name="idrest" id="idrest" hidden="hidden">
+                                <input name="range1" id="range1" hidden="hidden">
+                                <input name="range2" id="range2" hidden="hidden">
+                                <input id="pendencias1" value="{{Pendencias}}" hidden="hidden">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Voltar</button>
+                                <button type="submit" class="btn btn-outline-primary" onclick="confirmar()">Confirmar Compras</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}

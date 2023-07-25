@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Estoque
+{% endblock %}
+
+{% block content %}
+    <link href="{% static 'css/Estoques.css' %}" rel="stylesheet">
+    <header class="telaestoques">
+        <form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <h1>
+                                Estoque
+                            </h1>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="card">
+                                <img src="{% static 'image/Zomo Laranja.png' %}" class="card-img-top cartao" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Consumíveis.</p>
+                                    <br>
+                                    <p class="card-text">Existe(m) {{consumiveis}} tipo(s) de Consumíveis, somando o valor do seu estoque é de R$   {{preco_con}}.</p>
+                                </div>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card">
+                                <img src="{% static 'image/Jack Daniels.png' %}" class="card-img-top cartao" alt="...">                               <div class="card-body">
+                                    <p class="card-text">Bebidas.</p>
+                                    <br>
+                                    <p class="card-text">Existe(m) {{bebidas}} tipo(s) de Bebida(s), somando o valor do seu estoque é de R$ {{preco_beb}}.</p>
+                                </div>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card">
+                                <img src="{% static 'image/Alimentos.png' %}" class="card-img-top cartao" alt="...">                               <div class="card-body">
+                                    <p class="card-text">Alimentos.</p>
+                                    <br>
+                                    <p class="card-text">Existe(m) {{alimentos}} tipo(s) de Alimento(s), somando o valor do seu estoque é de R$ {{preco_ali}}.</p>
+                                </div>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           <label class="valorEstoque">Possíveis ganhos em vendas: R$ {{soma_total}}.<img src="{%static 'css/image/Money.png'%}"></label>
+                        </td>
+                        <td>
+                           <label class="valorInvestimento">Valor investido: R$ {{investimento}}.<img src="{%static 'css/image/Seta Moeda.png'%}"></label>
+                        </td>
+                        <td>
+                           <label class="quantidadeVendida">Total de itens vendidos {{vendas}}.<img src="{%static 'css/image/Moedas.png'%}"></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </header>
+{% endblock %}
