@@ -26,7 +26,7 @@ TOKEN_CSRF = os.getenv('TOKEN_CSRF')
 
 if TOKEN_CSRF:
     SECRET_KEY = TOKEN_CSRF
-    CSRF_TRUSTED_ORIGINS = ['controle-de-estoques-production.up.railway.app']
+    CSRF_TRUSTED_ORIGINS = ['https://controle-de-estoques-production.up.railway.app']
 else:
     SECRET_KEY = 'django-insecure-ke3bot3n9$ukerqf)m^#6=*7mb&#fpsrahi($fmkow^*_+o7a%'
 
