@@ -2,8 +2,7 @@ from datetime import date
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-class Usuario(AbstractUser):
-    pass
+
 # Create your models here.
 class Entrada(models.Model):
     data = models.DateField(null=False, default=date.today)
