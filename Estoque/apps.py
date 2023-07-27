@@ -15,4 +15,5 @@ class EstoqueConfig(AppConfig):
         users = Usuario.objects.filter(email=email)
 
         if not users:
-            Usuario.objects.create_user(username=email, email=email, password=senha, is_active=True, is_staff=True)
+            Usuario.objects.create_user(username=email, email=email, password=senha,
+                                        is_active=True, is_staff=True)
