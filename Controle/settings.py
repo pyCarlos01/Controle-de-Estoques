@@ -34,8 +34,7 @@ else:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-
+ALLOWED_HOSTS = ["controle-de-estoques-production-6ed5.up.railway.app", "localhost", "127.0 0.1"]
 
 # Application definition
 
@@ -101,6 +100,7 @@ if DATABASE_URL:
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
+AUTH_USER_MODEL = 'Estoque.Usuario'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
