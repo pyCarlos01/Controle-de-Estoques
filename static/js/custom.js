@@ -233,13 +233,13 @@ function verificarSituacao(){
 
     for(let i = 5; i <= itens.length; i+= 6){
         if(itens[i].innerText == 'Estoque Crítico'){
-            itens[i].style.color = 'orange'
+            itens[i].style.color = 'red'
         }
         else if(itens[i].innerText == 'Estoque Vazio'){
             itens[i].style.color = 'red'
         }
         else if(itens[i].innerText == 'Estoque Regular'){
-            itens[i].style.color = 'yellow'
+            itens[i].style.color = 'orange'
         }
         else if(itens[i].innerText == 'Estoque Seguro'){
             itens[i].style.color = 'green'

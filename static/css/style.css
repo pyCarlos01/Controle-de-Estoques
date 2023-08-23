@@ -2,22 +2,28 @@
     margin: 0;
     margin-top: 0;
     padding: 0;
+    background-color: #f8f9fa;
 }
 
 .homeheader{
     display: block;
     background-image: url("image/Fundo Home.jpg");
     background-position: center;
-    background-size: auto;
+    background-size: cover;
     position: relative;
-    padding: 400px;
-    margin-top: 10px;
+    padding: 20%;
+    margin-top: 5%;
+    margin-left: 25%;
+    width: 50%;
+    height: 50%;
+    overflow: hidden;
+    animation: animar 5s infinite alternate;
 }
 
 .logo{
     margin: 0;
-    width: 60px;
-    height: 50px;
+    width: 40%;
+    height: 10%;
 }
 
 .nav{
@@ -34,7 +40,23 @@
 }
 
 form{
-    margin-top: 80px;
+    margin-top: 4%;
 }
 
-
+@keyframes animar{
+    0%{
+        margin-left: 50%;
+    }
+    25% {
+        margin-top: -25%;
+    }
+    50%{
+        margin-top: 25%;
+    }
+    75%{
+        margin-left: 0%;
+    }
+    100%{
+        margin-left:25%
+    }
+}
