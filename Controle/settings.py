@@ -32,7 +32,7 @@ else:
     SECRET_KEY = 'django-insecure-ke3bot3n9$ukerqf)m^#6=*7mb&#fpsrahi($fmkow^*_+o7a%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["controle-de-estoques-production-6ed5.up.railway.app", "localhost", "127.0 0.1"]
 
